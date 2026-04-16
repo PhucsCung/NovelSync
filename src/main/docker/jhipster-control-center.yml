@@ -1,3 +1,4 @@
+#giao diện quản lý giúp xem các chỉ số của ứng dụng , log, và tình trạng các service.
 ## How to use JHCC docker compose
 # To allow JHCC to reach JHipster application from a docker container note that we set the host as host.docker.internal
 # To reach the application from a browser, you need to add '127.0.0.1 host.docker.internal' to your hosts file.

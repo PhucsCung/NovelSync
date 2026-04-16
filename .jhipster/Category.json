@@ -1,0 +1,18 @@
+{
+  "annotations": {
+    "changelogDate": "20260413033906"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "categoryName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Category",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

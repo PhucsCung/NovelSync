@@ -1,0 +1,98 @@
+// --- THÊM THỰC THỂ EMPLOYEE ---
+entity Employee {
+    fullName String required,
+    hireDate Instant required,
+    salary BigDecimal required min(0)
+}
+
+// --- ĐỊNH NGHĨA MỐI QUAN HỆ 1-1 ---
+relationship OneToOne {
+    // Một Employee sẽ tương ứng với một User hệ thống
+    // user(login) nghĩa là trên giao diện sẽ hiển thị tên đăng nhập để chọn
+    Employee{user(login)} to User with builtInEntity
+}
+
+// Giữ nguyên các cấu hình cũ của bạn
+service Employee with serviceImpl
+paginate Employee with pagination
+// --- NHÓM 2: QUẢN LÝ SÁCH (CATALOG) ---
+
+entity Category {
+    categoryName String required
+}
+
+entity Author {
+    authorName String required
+}
+
+entity Book {
+    title String required,
+    isbn String unique,
+    price BigDecimal required min(0),
+    stockQuantity Integer required min(0),
+    imageUrl String
+}
+
+// --- NHÓM 3: QUẢN LÝ KHO (INVENTORY) ---
+
+entity InventoryReceipt {
+    receiptDate Instant required,
+    totalAmount BigDecimal required min(0)
+}
+
+entity ReceiptDetail {
+    quantity Integer required min(1),
+    purchasePrice BigDecimal required min(0)
+}
+
+// --- NHÓM 4: QUẢN LÝ BÁN HÀNG (SALES) ---
+
+entity Customer {
+    fullName String required,
+    phoneNumber String
+}
+
+entity Order {
+    orderDate Instant required,
+    totalAmount BigDecimal required min(0),
+    status OrderStatus
+}
+
+enum OrderStatus {
+    PENDING, COMPLETED, CANCELLED
+}
+
+entity OrderDetail {
+    quantity Integer required min(1),
+    salePrice BigDecimal required min(0)
+}
+
+// --- ĐỊNH NGHĨA MỐI QUAN HỆ (RELATIONSHIPS) ---
+
+relationship ManyToOne {
+    // Books
+    Book{category(categoryName)} to Category,
+    Book{author(authorName)} to Author,
+
+    // Inventory
+    InventoryReceipt{user(login)} to User with builtInEntity,
+    ReceiptDetail{receipt} to InventoryReceipt,
+    ReceiptDetail{book(title)} to Book,
+
+    // Sales
+    Order{customer(fullName)} to Customer,
+    Order{user(login)} to User with builtInEntity,
+    OrderDetail{order} to Order,
+    OrderDetail{book(title)} to Book
+}
+
+// --- CẤU HÌNH BỔ SUNG ---
+
+// Sử dụng Service Class cho các bảng nghiệp vụ
+service all with serviceImpl
+
+// SỬA LỖI: Quay lại dùng từ khóa 'paginate' chuẩn của JDL
+paginate all with pagination
+
+// Lọc dữ liệu (Filtering)
+filter Book, Order, InventoryReceipt

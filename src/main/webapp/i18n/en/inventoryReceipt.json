@@ -1,0 +1,26 @@
+{
+  "novelsyncApp": {
+    "inventoryReceipt": {
+      "home": {
+        "title": "Inventory Receipts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Inventory Receipt",
+        "createOrEditLabel": "Create or edit a Inventory Receipt",
+        "notFound": "No Inventory Receipts found"
+      },
+      "created": "A new Inventory Receipt is created with identifier { param }",
+      "updated": "A Inventory Receipt is updated with identifier { param }",
+      "deleted": "A Inventory Receipt is deleted with identifier { param }",
+      "delete": {
+        "question": "Are you sure you want to delete Inventory Receipt { id }?"
+      },
+      "detail": {
+        "title": "Inventory Receipt"
+      },
+      "id": "ID",
+      "receiptDate": "Receipt Date",
+      "totalAmount": "Total Amount",
+      "user": "User"
+    }
+  }
+}

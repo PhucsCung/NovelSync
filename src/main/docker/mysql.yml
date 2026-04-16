@@ -1,13 +1,13 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: novelsync
+name: novelsync-erp
 services:
   mysql:
     image: mysql:9.2.0
     volumes:
       - ./config/mysql:/etc/mysql/conf.d
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=novelsync
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=novelsync_erp_db
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:

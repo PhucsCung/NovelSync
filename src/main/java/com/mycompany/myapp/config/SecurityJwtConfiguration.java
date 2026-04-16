@@ -27,13 +27,14 @@ public class SecurityJwtConfiguration {
 
     @Bean
     public JwtDecoder jwtDecoder(SecurityMetersService metersService) {
+        //NimbusJwtDecoder này là công cụ của spring boot để ướm so sánh cái secretKey và check cái token đúng định dạng,cong thời gian,..
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(getSecretKey()).macAlgorithm(JWT_ALGORITHM).build();
         return token -> {
             try {
                 return jwtDecoder.decode(token);
             } catch (Exception e) {
                 if (e.getMessage().contains("Invalid signature")) {
-                    metersService.trackTokenInvalidSignature();
+                    metersService.trackTokenInvalidSignature(); // fhi lỗi vào file matersService
                 } else if (e.getMessage().contains("Jwt expired at")) {
                     metersService.trackTokenExpired();
                 } else if (
@@ -57,6 +58,7 @@ public class SecurityJwtConfiguration {
 
     private SecretKey getSecretKey() {
         byte[] keyBytes = Base64.from(jwtKey).decode();
-        return new SecretKeySpec(keyBytes, 0, keyBytes.length, JWT_ALGORITHM.getName());
+        return new SecretKeySpec(keyBytes, 0, keyBytes.length, JWT_ALGORITHM.getName()); // cái này thường là HS256
+        //chuyển chuỗi base64 kia thành đối tượng secretKey để java có thể dùng mà ký tên
     }
 }

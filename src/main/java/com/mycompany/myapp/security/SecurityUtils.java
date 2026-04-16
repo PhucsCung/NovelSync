@@ -18,8 +18,10 @@ import org.springframework.security.oauth2.jwt.Jwt;
 public final class SecurityUtils {
 
     public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS512;
+    //đây là thuật toán mà thằng securityJwtconfig sử dụng
 
     public static final String AUTHORITIES_CLAIM = "auth";
+    //quyền vứt vào cái claim trong payload
 
     public static final String USER_ID_CLAIM = "userId";
 
@@ -35,6 +37,7 @@ public final class SecurityUtils {
         return Optional.ofNullable(extractPrincipal(securityContext.getAuthentication()));
     }
 
+    //xac định xem người dùng đang đăng nhập theo phương thức gì trả về ở hàm trên
     private static String extractPrincipal(Authentication authentication) {
         if (authentication == null) {
             return null;
@@ -65,7 +68,7 @@ public final class SecurityUtils {
      *
      * @return the Id of the current user.
      */
-    public static Optional<Long> getCurrentUserId() {
+    public static Optional<Long> getCurrentUserId() { //lấy id từ cái token
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
             .filter(authentication -> authentication.getPrincipal() instanceof ClaimAccessor)
@@ -78,7 +81,7 @@ public final class SecurityUtils {
      *
      * @return true if the user is authenticated, false otherwise.
      */
-    public static boolean isAuthenticated() {
+    public static boolean isAuthenticated() { //kiể tra xem đăng nhập chưa(có token không) hay là khách vãng lai
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication != null && getAuthorities(authentication).noneMatch(AuthoritiesConstants.ANONYMOUS::equals);
     }

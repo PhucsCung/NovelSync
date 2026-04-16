@@ -1,0 +1,27 @@
+{
+  "novelsyncApp": {
+    "receiptDetail": {
+      "home": {
+        "title": "Receipt Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Receipt Detail",
+        "createOrEditLabel": "Create or edit a Receipt Detail",
+        "notFound": "No Receipt Details found"
+      },
+      "created": "A new Receipt Detail is created with identifier { param }",
+      "updated": "A Receipt Detail is updated with identifier { param }",
+      "deleted": "A Receipt Detail is deleted with identifier { param }",
+      "delete": {
+        "question": "Are you sure you want to delete Receipt Detail { id }?"
+      },
+      "detail": {
+        "title": "Receipt Detail"
+      },
+      "id": "ID",
+      "quantity": "Quantity",
+      "purchasePrice": "Purchase Price",
+      "receipt": "Receipt",
+      "book": "Book"
+    }
+  }
+}

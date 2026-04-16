@@ -7,7 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "category": "Category",
+        "author": "Author",
+        "book": "Book",
+        "inventoryReceipt": "Inventory Receipt",
+        "receiptDetail": "Receipt Detail",
+        "customer": "Customer",
+        "order": "Order",
+        "orderDetail": "Order Detail",
+        "employee": "Employee"
       },
       "account": {
         "main": "Account",

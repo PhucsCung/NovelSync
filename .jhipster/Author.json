@@ -1,0 +1,18 @@
+{
+  "annotations": {
+    "changelogDate": "20260413033907"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "authorName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Author",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
